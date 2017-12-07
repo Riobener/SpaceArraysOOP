@@ -16,16 +16,18 @@ public class MyDraw extends View implements View.OnClickListener{
 
 	public MyDraw(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		makeSky();
+		sky = new Sky();
+		sky.makeSky();
 		rocket = new Rocket(BitmapFactory.decodeResource(getResources(), R.drawable.rocket),400,500,1,1);
 		ufo = new UFO(BitmapFactory.decodeResource(getResources(), R.drawable.ufo),250,500,1,1);
 		meteor = new Meteor(BitmapFactory.decodeResource(getResources(), R.drawable.meteor),100,500,1,1);
 
 	}
-
+	Sky sky;
 	Rocket rocket;
 	UFO ufo;
 	Meteor meteor;
+
 
 
 	public static float getRandom(float a,float b){
@@ -35,8 +37,8 @@ public class MyDraw extends View implements View.OnClickListener{
 	Paint paint = new Paint();
 	@Override
 	protected void onDraw(Canvas canvas) {
+		sky.draw(canvas);
 
-		drawSky(canvas);
 		ufo.draw(canvas);
 		ufo.move();
 		rocket.draw(canvas);
@@ -50,39 +52,11 @@ public class MyDraw extends View implements View.OnClickListener{
 
 
 
-	final int numStars = 500;
 
-	int xStar[] = new int[numStars];
-	int yStar[] = new int[numStars];
-	int alphaStar[] = new int[numStars];
 
-	void makeSky()
-	{
 
-		int maxX = 2000;
-		int maxY = 2000;
-		for (int i = 0; i < numStars; i++)
-		{
-			xStar[i] = (int)(Math.random() * maxX);
-			yStar[i] = (int)(Math.random() * maxY);
-			alphaStar[i] = (int)(Math.random() * 256);
-		}
-	}
 
-	void drawSky(Canvas canvas)
-	{
-		canvas.drawColor(Color.BLACK);
-		paint.setColor(Color.YELLOW);
-		paint.setStrokeWidth(2);
-		for (int i = 0; i < numStars; i++)
-		{
-			paint.setAlpha(alphaStar[i]);
-			alphaStar[i] += (int)(Math.random() * 11) - 5;
-			if (alphaStar[i] > 255) alphaStar[i] = 255;
-			if (alphaStar[i] < 0) alphaStar[i] = 0;
-			canvas.drawCircle(xStar[i], yStar[i], 3, paint);
-		}
-	}
+
 
 	@Override
 	public void onClick(View v) {
