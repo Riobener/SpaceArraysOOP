@@ -8,6 +8,29 @@
         android:id="@+id/myDraw1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
+        android:layout_below="@+id/RandomVXY"
+        android:layout_above="@+id/StopMove" />
+    <Button
+        android:id="@+id/RandomXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сгенерировать позицию объектов"
+        android:textColor="#000000"/>
+    <Button
+        android:id="@+id/StopMove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Остановить объекты"
+        android:textColor="#000000"
+        />
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RandomXY"
+        android:text="Сгенерировать скорость и направление"
+        android:textColor="#000000"
+        android:id="@+id/RandomVXY" />
 
 </RelativeLayout>

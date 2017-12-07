@@ -5,30 +5,51 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-public class Rocket {
-    float x, y, vx, vy;
-    Bitmap pic;
 
-    Rocket(Bitmap pic){
-        this.x = (float)(Math.random()*500);
-        this.y = (float)(Math.random()*500);
-        this.vx = (float)(Math.random()*11)-5;
-        this.vy = (float)(Math.random()*11)-5;
+public class Rocket extends Objects implements Moveable, Drawable {
+
+
+
+    Rocket(Bitmap pic,float x, float y, float vx, float vy){
+        super(x,y,vx,vy);
+
+
         this.pic = pic;
     }
-    void move(){
+    public void move(){
         this.x += this.vx;
         this.y += this.vy;
     }
 
     Paint paint = new Paint();
     Matrix matrix = new Matrix();
-    void draw(Canvas canvas){
+    Bitmap pic;
+   public void draw(Canvas canvas){
         matrix.setScale(0.2f, 0.2f);
-        //Study mathematics, dear young programmer :)
-        matrix.postRotate((float)Math.toDegrees(Math.atan2(vy, vx)) + 45);
-        matrix.postTranslate(x, y);
+        matrix.postRotate((float)Math.toDegrees(Math.atan2(this.vy, this.vx)) + 45);
+        matrix.postTranslate(this.x, this.y);
         paint.setAlpha(255);
         canvas.drawBitmap(pic, matrix, paint);
+    }
+
+
+    @Override
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    @Override
+    public void setVx(float vx) {
+        this.vx = vx;
+    }
+
+    @Override
+    public void setVy(float vy) {
+        this.vy = vy;
     }
 }
